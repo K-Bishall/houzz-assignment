@@ -4,7 +4,7 @@ import {
     Tabs,
 } from 'react-bootstrap';
 import AllBeers from './pages/AllBeers.tsx';
-import MyBeers from './pages/MyBeers.tsx';
+import MyBeers from './pages/my_beers/MyBeers.tsx';
 import {
     QueryClient,
     QueryClientProvider,

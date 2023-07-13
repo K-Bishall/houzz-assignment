@@ -1,8 +1,7 @@
-export interface ApiBeer {
-    id: number;
+export interface BeerItem {
     name: string;
     image_url: string;
     tagline: string;
     description: string;
-    ingredients: object;
+    ingredients?: object;
 }

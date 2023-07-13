@@ -2,7 +2,7 @@ import {
     useQuery,
     UseQueryResult,
 } from 'react-query';
-import { ApiBeer } from '../apis/models/ApiBeer.js';
+import { BeerItem } from './models/BeerItem.js';
 import beer from '../assets/Houzz Beer.png';
 
 
@@ -23,7 +23,7 @@ const data = {
 };
 
 
-export const useAllBeers = (page: number, pageSize = 10): UseQueryResult<ApiBeer[]> => {
+export const useAllBeers = (page: number, pageSize = 10): UseQueryResult<BeerItem[]> => {
     return useQuery({
         queryKey: ['getAllBeers', page],
         queryFn: async () => {
@@ -42,7 +42,7 @@ export const useAllBeers = (page: number, pageSize = 10): UseQueryResult<ApiBeer
                 data,
                 data,
                 data,
-            ] as ApiBeer[];
+            ] as BeerItem[];
         },
         onError: (err) => {
             console.error(err);
