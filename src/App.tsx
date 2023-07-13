@@ -3,8 +3,8 @@ import {
     Tab,
     Tabs,
 } from 'react-bootstrap';
-import AllBeers from './pages/AllBeers.tsx';
-import MyBeers from './pages/my_beers/MyBeers.tsx';
+import AllBeersView from './pages/all_beers/AllBeersView.tsx';
+import MyBeersView from './pages/my_beers/MyBeersView.tsx';
 import {
     QueryClient,
     QueryClientProvider,
@@ -21,10 +21,10 @@ function App() {
                     className="pb-3"
                 >
                     <Tab eventKey="all-beers" title="All Beers">
-                        <AllBeers/>
+                        <AllBeersView/>
                     </Tab>
                     <Tab eventKey="my-beers" title="My Beers">
-                        <MyBeers/>
+                        <MyBeersView/>
                     </Tab>
                 </Tabs>
             </div>

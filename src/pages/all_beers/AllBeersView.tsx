@@ -1,9 +1,9 @@
 import { ReactElement } from 'react';
-import CatalogItem from '../components/CatalogItem.tsx';
-import { useAllBeers } from '../apis/useApi.js';
+import CatalogItem from '../../components/CatalogItem.tsx';
+import { useAllBeers } from '../../apis/useApi.js';
 
 
-const AllBeers = (): ReactElement => {
+const AllBeersView = (): ReactElement => {
     const {data: beers} = useAllBeers(1);
 
     return (
@@ -18,4 +18,4 @@ const AllBeers = (): ReactElement => {
     );
 };
 
-export default AllBeers;
+export default AllBeersView;
