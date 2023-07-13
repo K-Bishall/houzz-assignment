@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
 import {
     Card,
+    OverlayTrigger,
     Tooltip,
 } from 'react-bootstrap';
 import { BeerItem } from '../apis/models/BeerItem.js';
@@ -14,10 +15,22 @@ const CatalogItem = ({beer}: CatalogItemProps): ReactElement => {
 
     return (
         <Card className="shadow border-0 catalog-card">
-            <Card.Body className="d-flex flex-row gap-4 align-items-center">
-                <Tooltip title={ingredients ? `Ingredients: ${ingredients}` : undefined} placement="top">
-                    <img src={beer.image_url} alt={beer.name} style={{height: '10em'}}/>
-                </Tooltip>
+            <Card.Body className="px-5 d-flex gap-5 align-items-center">
+                <OverlayTrigger
+                    placement="top"
+                    overlay={
+                        <Tooltip title={ingredients ? `Ingredients: ${ingredients}` : undefined}>
+                            Ingredients: {ingredients}
+                        </Tooltip>
+                    }
+                >
+                    <img
+                        src={beer.image_url}
+                        alt={beer.name}
+                        style={{height: '8em'}}
+                    />
+                </OverlayTrigger>
+
                 <div className="d-flex flex-column gap-2">
                     <p className="fs-4 fw-semibold m-0">{beer.name}</p>
                     <p

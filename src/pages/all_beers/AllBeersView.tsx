@@ -1,36 +1,43 @@
 import {
     ReactElement,
     useCallback,
-    useState,
 } from 'react';
 import CatalogItem from '../../components/CatalogItem.tsx';
 import { useAllBeers } from '../../apis/useApi.js';
 
 
 const AllBeersView = (): ReactElement => {
-    const [page, setPage] = useState(1);
-
-    const {data: beers, isLoading} = useAllBeers(page);
+    const {
+        data,
+        isFetching,
+        error,
+        fetchNextPage,
+    } = useAllBeers();
 
     const handleLoadMore = useCallback(() => {
-        setPage(page + 1);
-    }, [page]);
+        fetchNextPage();
+    }, [fetchNextPage]);
 
     return (
         <div>
             <div className="d-flex flex-column gap-4">
-                {beers?.map((item, index) =>
-                    <CatalogItem
-                        key={index}
-                        beer={item}
-                    />,
+                {data?.pages.map(page =>
+                    page.map((beerItem, index) =>
+                        <CatalogItem
+                            key={index}
+                            beer={beerItem}
+                        />,
+                    ),
                 )}
             </div>
 
+            {error ? <p className="mt-4 text-danger fw-semibold text-center">Error loading beers</p> : null}
+
             <p className="mt-4 text-primary fw-semibold text-center">
-                {isLoading
+                {isFetching
                     ? <span>Loading...</span>
-                    : <span role="button" onClick={handleLoadMore}>Load more &#9660;</span>
+                    : <span role="button" onClick={handleLoadMore}>{error ? 'Retry' :
+                        <span>Load more &#9660;</span>}</span>
                 }
             </p>
         </div>
