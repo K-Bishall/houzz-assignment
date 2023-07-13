@@ -17,3 +17,11 @@
     }
   }
 }
+
+.catalog-card {
+  cursor: pointer;
+
+  :hover {
+    background-color: aliceblue;
+  }
+}
