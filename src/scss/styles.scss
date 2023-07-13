@@ -25,3 +25,15 @@
     background-color: aliceblue;
   }
 }
+
+.truncate {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.truncate-oneline {
+  @extend .truncate;
+  -webkit-line-clamp: 1 !important;
+}

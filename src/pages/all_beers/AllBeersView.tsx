@@ -20,12 +20,13 @@ const AllBeersView = (): ReactElement => {
 
     return (
         <div>
-            <div className="d-flex flex-column gap-4">
+            <div className="d-flex flex-wrap gap-lg-0 gap-4">
                 {data?.pages.map(page =>
                     page.map((beerItem, index) =>
                         <CatalogItem
                             key={index}
                             beer={beerItem}
+                            className='col-lg-6 col-12 p-2'
                         />,
                     ),
                 )}
