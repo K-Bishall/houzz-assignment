@@ -1,2 +1,19 @@
 // Import all of Bootstrap's CSS
 @import "bootstrap/scss/bootstrap";
+
+.nav-tabs {
+  border: none;
+
+  .nav-link {
+    border: none;
+    font-weight: $font-weight-semibold;
+    font-size: $h5-font-size;
+    padding-left: 0;
+    padding-right: 2em;
+    color: $secondary;
+
+    .active {
+      color: black;
+    }
+  }
+}
