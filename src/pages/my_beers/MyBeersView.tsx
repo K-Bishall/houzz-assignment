@@ -11,10 +11,15 @@ import {
 import { BeerItem } from '../../apis/models/BeerItem.js';
 import NewBeerForm from './NewBeerForm.js';
 import CatalogItem from '../../components/CatalogItem.js';
+import {
+    useAddNewBeer,
+    useMyBeers,
+} from '../../apis/useApi.js';
 
 
 const MyBeersView = (): ReactElement => {
-    const [myBeersList, setMyBeersList] = useState<BeerItem[]>([]);
+    const {data: myBeersList} = useMyBeers();
+    const {mutate: addNewBeer} = useAddNewBeer();
 
     const [showModal, setShowModal] = useState(false);
     const handleClickAddNew = () => {
@@ -22,9 +27,9 @@ const MyBeersView = (): ReactElement => {
     };
 
     const handleAddNewBeer = useCallback((newBeer: BeerItem) => {
-        setMyBeersList([...myBeersList, newBeer]);
+        addNewBeer({newBeer});
         setShowModal(false);
-    }, [myBeersList]);
+    }, [addNewBeer]);
 
     return (
         <div>
@@ -32,7 +37,7 @@ const MyBeersView = (): ReactElement => {
                 <Button onClick={handleClickAddNew}>Add a new beer</Button>
             </div>
 
-            {myBeersList.length
+            {myBeersList?.length
                 ? <div className="d-flex flex-column gap-4">
                     {myBeersList?.map((item, index) =>
                         <CatalogItem
